@@ -1,0 +1,20 @@
+{
+    "version":2,
+    "builds": [
+    {
+       "src":"server.js",
+       "use":"@verscel/node",
+       "config":{
+        "includeFile":[
+            "dist/**"
+        ]
+       }
+    }
+  ],
+  "routes": [
+    {
+        "src":"/(.*)",
+        "dest":"server.js"
+    }
+  ]
+}
