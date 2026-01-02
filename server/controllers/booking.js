@@ -99,3 +99,30 @@ export const changeBookingStatus =async (req ,res)=>{
  res.json({message:error.message, success:false})
  }
 }
+
+export const deleteBooking= async(req,res)=>{
+    
+    try{
+    const {_id}=req.user;
+    const {bookingId}=req.body;
+     const booking = await Booking.findById(bookingId);
+     if(!booking){
+        return res.json({success:false, message:"Booking not found"})
+     }
+     if (booking.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message:"Unauthorized"});
+            }
+     const today=new Date();
+     const endDate=new Date(booking.returnDate);
+     if(endDate>=today){
+       return res.json({success:false, message:"Return Date Not passed yet"})
+     }
+         await Booking.findByIdAndDelete(bookingId);
+          res.json({success: true, message: "Booking deleted successfully" });
+    }
+    catch(error){
+    res.json({message:error.message, success:false})
+ }
+}
+
+

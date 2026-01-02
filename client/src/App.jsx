@@ -14,7 +14,8 @@ import ManageBooking from "./pages/owner/ManageBooking"
 import LoginPage from "./components/LoginPage";
 import{Toaster} from 'react-hot-toast';
 import Review from "./pages/Review.jsx";
-
+import AboutUs from "./components/AboutUs.jsx";
+import ContactUs from "./components/ContactUs.jsx";
 const App = () => {
 
  const isOwnerPath =useLocation().pathname.startsWith("/owner")
@@ -33,6 +34,8 @@ const App = () => {
          <Route path="/my-booking" element={<MyBooking />} />
          <Route path='/reviews' element={<Review/>}/>
          <Route path="/cars" element={<Cars />} />
+         <Route path="/about-us" element={<AboutUs/>} />
+         <Route path="/contact-us" element={<ContactUs/>} />
          <Route path="/owner" element={<Layout />}>
           <Route index element={<Dashboard/>}/>
           <Route path="add-car" element={<AddCar/>}/>

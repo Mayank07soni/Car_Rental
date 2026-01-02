@@ -3,6 +3,8 @@ import Title from '../../components/Title';
 import { useAppContext } from '../../context/AppContext';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+
+
 const ManageBooking = () => {
   const{axios, currency}=useAppContext();
 
@@ -29,6 +31,22 @@ const ManageBooking = () => {
           toast.error(data.message);
         }
        
+    }
+    catch(error){
+      toast.error(error.message);
+    }
+  }
+  const deleteBooking= async(bookingId)=>{
+    try{
+      const{data}=await axios.post('bookings/delete-booking',{bookingId});
+        if(data.success){
+          toast.success(data.message)
+          setBooking((prev)=>
+          prev.filter((b)=>b._id!=bookingId))
+        }
+        else{
+          toast.error(data.message);
+        }
     }
     catch(error){
       toast.error(error.message);
@@ -85,8 +103,11 @@ const ManageBooking = () => {
                     <option value="confirmed">Confirmed</option>
                     <option value="cancelled">Cancelled</option>
                   </select>
-                ): (
+                ): (<>
                 <span className={`px-1 py-1 rounded text-[7px] sm:text-xs font-semibold ${booking.status==="confirmed"?"bg-green-200  text-green-700" : 'bg-red-200  text-red-700'}`}>{booking.status}</span>
+                <button onClick={()=>deleteBooking(booking._id)} ><i class="px-1.5 sm:px-5 fa-solid fa-trash text-[#0d4b50] hover:text-red-700 cursor-pointer transition text-[10px] sm:text-base" title="Delete Car"></i>
+                  </button>
+                  </>
                 )}
                 </td>
                 

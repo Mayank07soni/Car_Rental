@@ -3,7 +3,7 @@
     "builds": [
     {
        "src":"server.js",
-       "use":"@verscel/node",
+       "use":"@vercel/node",
        "config":{
         "includeFile":[
             "dist/**"

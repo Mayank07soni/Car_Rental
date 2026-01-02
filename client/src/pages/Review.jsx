@@ -75,13 +75,14 @@ return(
                   fill={i < review.rating ? "#FF532E" : "#E5E7EB"}
                 />
               </svg>
-            ))}
+            ))} 
+            
           </div>
-
          
-          <p className="text-gray-700  text-[10px] sm:text-sm text-center mb-6 leading-relaxed">
+          <p className="text-gray-700 border border-solid border-black px-5 py-3 rounded-2xl text-[10px] sm:text-sm text-center mb-6 leading-relaxed">
             {review.comment || "No comment provided"}
           </p>
+        
 
 {review.user._id===user._id &&(
           <button
@@ -90,8 +91,9 @@ return(
               <i className="px-1.5 sm:px-5 fa-solid fa-trash transition text-[10px] sm:text-base" title="Delete Car"></i>
             Delete Review
           </button>
-)}
-         
+          
+)  }
+        
         </div>
       ))
   }
