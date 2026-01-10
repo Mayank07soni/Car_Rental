@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from 'cors';
-import Auth from './routes/user.js';
+import userrouter from './routes/user.js';
 import ownerrouter from "./routes/owner.js";
 import bookingrouter from "./routes/booking.js";
 import reviewrouter from "./routes/review.js";
@@ -11,12 +11,12 @@ const app=express();
 dotenv.config();
 
 const PORT=process.env.PORT||2005;  
-app.listen(PORT,()=>console.log(`Server Running on PORT ${PORT}`))
+
 
 app.use(cors());
 
 app.use(express.json());
-app.use('/user', Auth);
+app.use('/user', userrouter);
 app.use('/owner',ownerrouter)
 app.use('/bookings',bookingrouter)
 app.use('/review',reviewrouter)
@@ -33,5 +33,5 @@ mongoose
     console.error("REASON:", error.message);
   });
 
-
+app.listen(PORT,()=>console.log(`Server Running on PORT ${PORT}`))
 app.get('/',(req,res)=>res.send("Server is Running"))
