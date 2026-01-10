@@ -51,23 +51,45 @@ useEffect(()=>{
   getReview();
 },[user]);
 
+return (
+   <div className="min-h-screen bg-[#efeedd] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+  {/* Header Section */}
+  <div className="mx-auto max-w-4xl">
+    <Title title="Reviews" />
+    
+    <div className="mt-4 sm:mt-6">
+      <p className="text-center text-sm font-semibold text-[#0d4b50] sm:text-base">
+        What our <span className="text-[#FF532E]">{reviews.length}</span> customers say
+      </p>
+      <div className="mx-auto mt-2 h-1 w-20 rounded-full bg-[#FF532E]"></div>
+    </div>
+  </div>
 
-return(
-<div className="bg-[#efeedd] min-h-screen py-8 sm:py-12 px-3 sm:px-6">
-  <Title title=" Reviews"/>
-        <div className="text-center mt-3 sm:mt-4 text-sm sm:text-base text-[#0d4b50] font-medium">What our {reviews.length} customers say</div>
-  <div className="max-w-sm sm:max-w-md mx-auto mt-6 sm:mt-8 bg-white p-4 sm:p-6 rounded-xl shadow-md border border-gray-200">
-   
-    {
+  {/* Reviews Container */}
+  <div className="mx-auto mt-8 max-w-4xl space-y-6 sm:mt-10">
+    {reviews.length === 0 ? (
+      <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-lg">
+        <p className="text-gray-500">No reviews yet</p>
+      </div>
+    ) : (
       reviews.map((review) => (
-        <div key={review._id} className="flex flex-col items-center">
-          
-          <div className="flex justify-center gap-1 mb-4">
+        <div
+          key={review._id}
+          className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8"
+        >
+          {/* User Name */}
+          <div className="mb-3">
+            <p className="text-center text-sm font-semibold text-[#0d4b50] sm:text-base">
+              {review.user.name}
+            </p>
+          </div>
+
+          {/* Rating Stars */}
+          <div className="mb-5 flex justify-center gap-1.5">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                width="20"
-                height="20"
+                className="h-6 w-6 transition-transform duration-200 group-hover:scale-110 sm:h-7 sm:w-7"
                 viewBox="0 0 22 20"
               >
                 <path
@@ -75,31 +97,33 @@ return(
                   fill={i < review.rating ? "#FF532E" : "#E5E7EB"}
                 />
               </svg>
-            ))} 
-            
+            ))}
           </div>
-         
-          <p className="text-gray-700 border border-solid border-black px-5 py-3 rounded-2xl text-[10px] sm:text-sm text-center mb-6 leading-relaxed">
-            {review.comment || "No comment provided"}
-          </p>
-        
 
-{review.user._id===user._id &&(
-          <button
-            onClick={()=>deleteReview(review._id)}
-            className=" w-27 sm:w-48 h-10 bg-[#123736] mb-10 text-white rounded-lg text-[10px] sm:text-sm font-medium hover:bg-red-500 transition mx-auto">
-              <i className="px-1.5 sm:px-5 fa-solid fa-trash transition text-[10px] sm:text-base" title="Delete Car"></i>
-            Delete Review
-          </button>
-          
-)  }
-        
+          {/* Review Comment */}
+          <div className="mb-6">
+            <p className="mx-auto max-w-2xl rounded-2xl border border-[#0d4b50]/20 bg-gray-50 px-6 py-5 text-center text-xs leading-relaxed text-gray-700 shadow-sm sm:text-sm md:text-base">
+              {review.comment || "No comment provided"}
+            </p>
+          </div>
+
+          {/* Delete Button - Only for review owner */}
+          {review.user._id === user._id && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => deleteReview(review._id)}
+                className="group/btn inline-flex items-center gap-2.5 rounded-lg bg-[#123736] px-6 py-2.5 text-xs font-medium text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:shadow-lg sm:px-8 sm:text-sm"
+              >
+                <i className="fa-solid fa-trash text-xs transition-transform duration-300 group-hover/btn:rotate-12 sm:text-sm" title="Delete Review"></i>
+                Delete Review
+              </button>
+            </div>
+          )}
         </div>
       ))
-  }
+    )}
   </div>
 </div>
-
-) }
+  )}
 
 export default Review

@@ -6,13 +6,14 @@ import Auth from './routes/user.js';
 import ownerrouter from "./routes/owner.js";
 import bookingrouter from "./routes/booking.js";
 import reviewrouter from "./routes/review.js";
+
 const app=express();
 dotenv.config();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
-}));
+const PORT=process.env.PORT||2005;  
+app.listen(PORT,()=>console.log(`Server Running on PORT ${PORT}`))
+
+app.use(cors());
 
 app.use(express.json());
 app.use('/user', Auth);
@@ -34,5 +35,3 @@ mongoose
 
 
 app.get('/',(req,res)=>res.send("Server is Running"))
-const PORT=process.env.PORT||2005; 
-app.listen(PORT,()=>console.log(`Server Running on PORT ${PORT}`))
