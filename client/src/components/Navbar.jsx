@@ -60,9 +60,9 @@ const [open,setOpen]=useState(false);
 
         <div className=" space-x-1 sm:space-x-3 sm:flex">
           
-          <button onClick={() => {isOwner? navigate('/owner') : changeRoleToOwner()}} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8 ">{isOwner? 'Dashboard' : 'List Cars'}</button>
+          <button onClick={() => {isOwner? navigate('/owner') : changeRoleToOwner()}} className="px-1 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8 ">{isOwner? 'Dashboard' : 'List Cars'}</button>
           
-          <button onClick={() =>{ user? logout() : navigate("/login")}} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8"> {user? 'Logout' : 'Login'}</button>
+          <button onClick={() =>{ user? logout() : navigate("/login")}} className="px-1 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8"> {user? 'Logout' : 'Login'}</button>
         </div>
       </nav>
 
