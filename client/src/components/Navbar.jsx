@@ -58,21 +58,12 @@ const [open,setOpen]=useState(false);
       
 
 
-        <div className="flex gap-2 sm:gap-3">
-  <button 
-    onClick={() => {isOwner ? navigate('/owner') : changeRoleToOwner()}} 
-    className="px-3 py-1.5 sm:px-4 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-xs sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] hover:text-[#083a3f] hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
-  >
-    {isOwner ? 'Dashboard' : 'List Cars'}
-  </button>
-  
-  <button 
-    onClick={() => {user ? logout() : navigate("/login")}} 
-    className="px-3 py-1.5 sm:px-4 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-xs sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] hover:text-[#083a3f] hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap"
-  >
-    {user ? 'Logout' : 'Login'}
-  </button>
-</div>
+        <div className=" space-x-1 sm:space-x-3 sm:flex">
+          
+          <button onClick={() => {isOwner? navigate('/owner') : changeRoleToOwner()}} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8 ">{isOwner? 'Dashboard' : 'List Cars'}</button>
+          
+          <button onClick={() =>{ user? logout() : navigate("/login")}} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8"> {user? 'Logout' : 'Login'}</button>
+        </div>
       </nav>
 
     </div>

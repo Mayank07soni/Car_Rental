@@ -13,7 +13,14 @@ dotenv.config();
 const PORT=process.env.PORT||2005;  
 
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://car-rental-8ktp.onrender.com"
+  ],
+  credentials: true
+}));
+
 
 app.use(express.json());
 app.use('/user', userrouter);
