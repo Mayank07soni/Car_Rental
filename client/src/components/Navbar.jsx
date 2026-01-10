@@ -41,15 +41,15 @@ const [open,setOpen]=useState(false);
 
         
         <div  className="flex items-center gap-2 cursor-pointer "> 
-          <img src="https://images.hdqwalls.com/download/car-minimalism-simple-art-1920x1080.jpg" alt="Car Rental Logo" className="h-7 w-7 sm:w-10 sm:h-10 rounded-md object-cover cursor-pointer hover:scale-105 transition-transform duration-300" />
-          <p className="text-[11px] sm:text-lg font-semibold tracking-wide font-['Outfit'] text-white hover:text-[#fdf9b3] transition-colors duration-200">Car Rental</p>
+          <img src="https://images.hdqwalls.com/download/car-minimalism-simple-art-1920x1080.jpg" alt="Car Rental Logo" className="h-6 w-6 sm:w-10 sm:h-10 rounded-md object-cover cursor-pointer hover:scale-105 transition-transform duration-300" />
+          <p className="text-[10px] sm:text-lg font-semibold tracking-wide font-['Outfit'] text-white hover:text-[#fdf9b3] transition-colors duration-200">Car Rental</p>
           </div>
 
-      <div className="flex items-center text-[9px] sm:text-base gap-1 sm:gap-4 md:gap-6">
+      <div className="flex items-center text-[8px] sm:text-base  sm:gap-4 md:gap-6">
 
 
           {navlink.map((link) => (
-            <div key={link.name} className="nav-item">
+            <div key={link.name} className="nav-item ">
               <Link to={link.path} className="text-[#f3eee5] font-medium hover:text-[#0d4b50] transition-colors duration-300 px-3 py-2 rounded-md hover:bg-[#f1ecd5]">{link.name}</Link>
             </div>
           ))}
