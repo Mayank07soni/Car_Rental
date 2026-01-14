@@ -26,6 +26,7 @@ const CarCards = ({car}) => {
     <div>
      <div>
         <h3 className="text-sm sm:text-lg font-semibold text-gray-800 leading-tight">{car.brand} {car.model}</h3>
+        <h2 className="text-sm sm:text-lg font-semibold text-gray-800 leading-tight">{car.number}</h2>
         <p className="text-[11px] sm:text-sm text-gray-500">{car.category} • {car.year}</p>
      </div>
    </div>

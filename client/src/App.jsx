@@ -8,13 +8,14 @@ import Footer from './components/Footer'
 import Layout from './pages/owner/Layout'
 import Dashboard from "./pages/owner/Dashboard";
 import AddCar from "./pages/owner/AddCar.jsx"
-import  ManageCar from "./pages/owner/ManageCars"
+import ManageCar from "./pages/owner/ManageCars"
 import ManageBooking from "./pages/owner/ManageBooking"
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/LoginPage.jsx";
 import{Toaster} from 'react-hot-toast';
 import Review from "./pages/Review.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import ContactUs from "./components/ContactUs.jsx";
+
 const App = () => {
 
  const isOwnerPath =useLocation().pathname.startsWith("/owner")

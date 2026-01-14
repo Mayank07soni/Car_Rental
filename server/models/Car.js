@@ -4,6 +4,7 @@ const {ObjectId}=mongoose.Schema.Types;
 const CarSchema=new mongoose.Schema({
     owner:{type: ObjectId, ref:'User'},
     brand:{type: String,  required:true},
+    number:{type: String,  required:true},
     model:{type: String,  required:true},
     image:{type: String,  required:true},
     year:{type: Number,  required:true},

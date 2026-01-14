@@ -10,11 +10,13 @@ const LoginPage = () => {
    const [name,setName]= useState("");
    const [email,setEmail]=useState("");
    const [password,setPassword]=useState("");
+   const [phoneNo, setPhoneNo]=useState("");
+   const [role,setRole]=useState('user')
 
   const onSubmitHandler =async (event)=>{
     try{
      event.preventDefault();
-     const checkState = state==="login"? {email,password}:{name,email,password}
+     const checkState = state==="login"? {email,password}:role==="owner"?{name,email,password,role,phone_no:phoneNo}:{name,email,password,role}
      const{data}=await axios.post(`/user/${state}` ,checkState)
     
      if(data.success){
@@ -57,14 +59,38 @@ const LoginPage = () => {
           onSubmit={onSubmitHandler} onClick={(e)=>e.stopPropagation()}>
 
             <h2 className="text-4xl text-gray-900 font-medium">
-              {state==="login" ? "Sign in" : "Sign up"}
+              {state==="login"? "  Sign in" : " Sign up"}
             </h2>
 
             <p className="text-sm text-gray-500/90 mt-3">
               {state==="login" ? "Welcome back! Please sign in to continue" : "Create your account to get started"}
             </p>
 
-           
+                {state === "register" && (
+                 <div className="mt-6 w-full flex gap-3">
+                <button
+                 type="button"
+                 className={`w-1/2 h-11 rounded-full border transition ${
+                 role === "user"
+                ? "bg-indigo-500 text-white"
+                : "bg-white text-gray-600"
+                }`}
+               onClick={() => setRole("user")}>
+                User
+               </button>
+
+                    <button
+                 type="button"
+                 className={`w-1/2 h-11 rounded-full border transition ${
+                  role === "owner"
+            ? "bg-indigo-500 text-white"
+            : "bg-white text-gray-600"
+      }`}
+      onClick={() => setRole("owner")}
+    >
+      Owner
+    </button>
+  </div>) }
               
               {state==="register" && (
              <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
@@ -143,9 +169,31 @@ const LoginPage = () => {
                 required
               />
             </div>
-
-
-           
+             {/*Phone No*/}
+             {state==="register" && role==='owner' && (
+            <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                 d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.3 21 3 13.7 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"
+                fill="#6B7280"
+               />
+              </svg>
+              <input
+                onChange={(e)=>setPhoneNo(e.target.value)}
+                value={phoneNo}
+                type="tel"
+                placeholder="Phone No."
+                className="bg-transparent outline-none text-sm w-full h-full"
+                required
+              />
+            </div>)}
+          
             <button
               type="submit"
               className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity" 

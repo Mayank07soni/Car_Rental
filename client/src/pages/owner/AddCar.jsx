@@ -11,6 +11,7 @@ const AddCar = () => {
   const [car,setCar]=useState({
     brand:' ',
     model:' ',
+    number:'',
     year:0,
     pricePerDay:0,
     category:'',
@@ -42,6 +43,7 @@ const AddCar = () => {
         setCar({
         brand:'',
         model:'',
+        number:'',
         year:0,
         pricePerDay:0,
        category:'',
@@ -85,7 +87,7 @@ const cityList=[
       <p className="text-[#1d5160] text-xs sm:text-base mt-2 text-center">Upload a picture of a car</p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
       <div className="flex flex-col">
         <label className="block text-[#132a2d] font-medium mb-1 text-sm sm:text-base">Brand</label>
         <input type="text" placeholder="e.g. BMW, Mercedes, Audi...."required value={car.brand} onChange={e=>setCar({...car,brand:e.target.value})} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"/>
@@ -94,6 +96,11 @@ const cityList=[
        <div className="flex flex-col">
          <label className="block  text-[#132a2d] font-medium mb-1 text-sm sm:text-base">Model</label>
         <input type="text" placeholder="e.g. X5,E-Class"required value={car.model} onChange={e=>setCar({...car,model:e.target.value})} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"/>
+       </div>
+
+       <div className="flex flex-col">
+         <label className="block  text-[#132a2d] font-medium mb-1 text-sm sm:text-base">Car Number</label>
+        <input type="text" placeholder="e.g. KA01AB1234" required value={car.number} onChange={e=>setCar({...car,number:e.target.value})} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"/>
        </div>
     </div>
 

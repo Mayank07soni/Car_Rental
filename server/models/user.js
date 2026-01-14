@@ -25,7 +25,10 @@ const UserSchema=new mongoose.Schema({
         type:String,
           default:""
     },
-   
+    phone_no:{
+        type:String,
+        default:"",
+    }
 },{timestamps:true});
 
 const Usermodel=mongoose.model('User',UserSchema);

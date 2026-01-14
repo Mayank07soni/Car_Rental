@@ -6,26 +6,10 @@ import toast from 'react-hot-toast'
 const Navbar = ( ) => {
  
 const {user,logout,isOwner,axios,setIsOwner,navigate}=useAppContext();
-   
 const location=useLocation()
 const [open,setOpen]=useState(false);
 
 
-  const changeRoleToOwner= async()=>{
-    try{
-     const {data}= await axios.post('/owner/change-role')
-     if(data.success){
-      setIsOwner(true)
-      toast.success(data.message)
-     }
-     else{
-      toast.error(data.message)
-     }
-    }
-    catch(error){
-     toast.error(error.message)
-    }
-  }
 
   const navlink = [
     { name: "Home", path: "/" },
@@ -59,9 +43,11 @@ const [open,setOpen]=useState(false);
 
 
         <div className=" space-x-1 sm:space-x-3 sm:flex">
-          
-          <button onClick={() => {isOwner? navigate('/owner') : changeRoleToOwner()}} className="px-1 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8 ">{isOwner? 'Dashboard' : 'List Cars'}</button>
-          
+         {isOwner &&( 
+          <button 
+          onClick={() =>navigate("/owner")} 
+          className="px-1 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8 ">Dashboard</button>
+         )}
           <button onClick={() =>{ user? logout() : navigate("/login")}} className="px-1 sm:px-4 py-1.5 sm:py-2 bg-[#f5ebd4] text-[#0d4b50] text-[8.5px] sm:text-base font-semibold rounded-md hover:bg-[#ebd8b0] border-[#083a3f] p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl sm:p-8"> {user? 'Logout' : 'Login'}</button>
         </div>
       </nav>
